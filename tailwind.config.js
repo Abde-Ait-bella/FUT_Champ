@@ -2,7 +2,16 @@
 module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'hero-pattern': "url('./src/assets/img/terrain.webp')",
+        'footer-texture': "url('/img/footer-texture.png')",
+      },
+      spacing: {
+        'img_width': '35rem',
+      }
+    },
+
     screens: {
       'telephone': '300px',
       // => @media (min-width: 300px) { ... }
