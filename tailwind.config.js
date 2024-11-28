@@ -8,7 +8,8 @@ module.exports = {
         'footer-texture': "url('/img/footer-texture.png')",
       },
       spacing: {
-        'img_width': '35rem',
+        'img_width': '100%',
+        // 'DF_width': '45rem',
       }
     },
 
