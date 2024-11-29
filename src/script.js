@@ -369,11 +369,11 @@ const fill_GK_card = () => {
 
     const GK_data = data.GK.filter((d) => d.active == true)
 
-    if (GK_data.length != 0) {
+    if (GK_data.length !== 0) {
 
         card_GK.children[0].children[0].children[0].textContent = GK_data[0].rating;
         card_GK.children[0].children[0].children[1].textContent = GK_data[0].position;
-        card_GK.children[0].children[1].children[0].textContent = GK_data[0].name.toLocaleLowerCase();
+        card_GK.children[0].children[1].children[0].textContent = GK_data[0].name?.toLocaleLowerCase();
         img_card.src = GK_data[0].photo;
         card_GK.children[0].appendChild(img_card.cloneNode(true));
 
@@ -412,9 +412,9 @@ const fill_LB_card = () => {
     LB_data.slice(0, 1)
 
 
-    if (LB_data.length != 0) {
+    if (LB_data.length !== 0) {
 
-        card_LB.children[0].children[1].children[0].textContent = LB_data[0].name.toLocaleLowerCase();
+        card_LB.children[0].children[1].children[0].textContent = LB_data[0].name?.toLocaleLowerCase();
         card_LB.children[0].children[0].children[0].textContent = LB_data[0].rating;
         card_LB.children[0].children[0].children[1].textContent = LB_data[0].position;
         img_card.src = LB_data[0].photo;
@@ -452,9 +452,9 @@ const fill_RB_card = () => {
     const RB_data = data.RB.filter((d) => d.active == true).slice(0, 1)
 
 
-    if (RB_data.length != 0) {
+    if (RB_data.length !== 0) {
 
-        card_RB.children[0].children[1].children[0].textContent = RB_data[0].name.toLocaleLowerCase();
+        card_RB.children[0].children[1].children[0].textContent = RB_data[0].name?.toLocaleLowerCase();
         card_RB.children[0].children[0].children[0].textContent = RB_data[0].rating;
         card_RB.children[0].children[0].children[1].textContent = RB_data[0].position;
         img_card.src = RB_data[0].photo;
@@ -490,12 +490,12 @@ const fill_CB_card = () => {
 
     const CB_data = data.CB.filter((d) => d.active == true).slice(0, 2)
 
-    if (CB_data.length != 0) {
+    if (CB_data.length !== 0) {
 
         for (let index = 0; index < CB_data.length; index++) {
 
             const card_CB = card.cloneNode(true);
-            card_CB.children[0].children[1].children[0].textContent = CB_data[index].name.toLocaleLowerCase();
+            card_CB.children[0].children[1].children[0].textContent = CB_data[index].name?.toLocaleLowerCase();
             card_CB.children[0].children[0].children[0].textContent = CB_data[index].rating;
             card_CB.children[0].children[0].children[1].textContent = CB_data[index].position;
             img_card.src = CB_data[index]?.photo;
@@ -534,13 +534,14 @@ const fill_CB_card = () => {
 const fill_CM_card = () => {
 
     const CM_data = data.CM.filter((d) => d.active == true).splice(0, 3)
-
-    if (CM_data.length != 0 && CM_data.length < 5) {
+    
+    
+    if (CM_data.length !== 0) {
 
         CM_data.map((e, i) => {
 
             const card_CM = card.cloneNode(true);
-            card_CM.children[0].children[1].children[0].textContent = CM_data[i].name.toLocaleLowerCase();
+            card_CM.children[0].children[1].children[0].textContent = CM_data[i].name?.toLocaleLowerCase();
             card_CM.children[0].children[0].children[0].textContent = CM_data[i].rating;
             card_CM.children[0].children[0].children[1].textContent = CM_data[i].position;
             img_card.src = CM_data[i].photo;
@@ -581,9 +582,9 @@ const fill_ST_card = () => {
     const card_ST = card.cloneNode(true)
     const ST_data = data.ST.filter((d) => d.active == true).slice(0, 1)
 
-    if (ST_data.length != 0) {
+    if (ST_data.length !== 0) {
 
-        card_ST.children[0].children[1].children[0].textContent = ST_data[0].name.toLocaleLowerCase();
+        card_ST.children[0].children[1].children[0].textContent = ST_data[0].name?.toLocaleLowerCase();
         card_ST.children[0].children[0].children[0].textContent = ST_data[0].rating;
         card_ST.children[0].children[0].children[1].textContent = ST_data[0].position;
         img_card.src = ST_data[0].photo;
@@ -620,9 +621,9 @@ const fill_RW_card = () => {
     const card_RW = card.cloneNode(true)
     const RW_data = data.RW.filter((d) => d.active == true).slice(0, 1)
 
-    if (RW_data.length != 0) {
+    if (RW_data.length !== 0) {
 
-        card_RW.children[0].children[1].children[0].textContent = RW_data[0].name.toLocaleLowerCase();
+        card_RW.children[0].children[1].children[0].textContent = RW_data[0].name?.toLocaleLowerCase();
         card_RW.children[0].children[0].children[0].textContent = RW_data[0].rating;
         card_RW.children[0].children[0].children[1].textContent = RW_data[0].position;
         img_card.src = RW_data[0].photo;
@@ -659,9 +660,9 @@ const fill_LW_card = () => {
     const card_LW = card.cloneNode(true)
     const LW_data = data.LW.filter((d) => d.active == true).slice(0, 1)
 
-    if (LW_data.length != 0) {
+    if (LW_data.length !== 0) {
 
-        card_LW.children[0].children[1].children[0].textContent = LW_data[0].name.toLocaleLowerCase();
+        card_LW.children[0].children[1].children[0].textContent = LW_data[0].name?.toLocaleLowerCase();
         card_LW.children[0].children[0].children[0].textContent = LW_data[0].rating;
         card_LW.children[0].children[0].children[1].textContent = LW_data[0].position;
         img_card.src = LW_data[0].photo;
