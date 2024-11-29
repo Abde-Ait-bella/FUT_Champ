@@ -614,15 +614,6 @@ const fill_LW_card = () => {
         img_card.src = LW_data[0].photo;
         card_LW.children[0].appendChild(img_card.cloneNode(true));
 
-        // var stats = [
-        //     ['PC', 'pace'],
-        //     ['SH', 'shooting'],
-        //     ['PS', 'passing'],
-        //     ['DR', 'definding'],
-        //     ['DE', 'defending'],
-        //     ['PH', 'physique'],
-        // ]
-
         stats.map((stat) => {
             const div_reserve = div.cloneNode(true);
             const p_resreve = p_detaille.cloneNode(true);
@@ -736,19 +727,32 @@ const toggleForm = (event) => {
     }
 }
 
+const validation = (data)=>{
+    // const caracter_validation = /^[3-9][0-9]|99$/
+    // for (let i = 0; i < array.length; i++) {
+    //     const element = array[i];
+        
+    // }
+    // if (caracter_validation.test(data)) {
+        
+    // }
+} 
+
 const handleSubmit = (event) => {
+    const {target} = event;
     event.preventDefault();
     const data_create = {};
     const keys = {};
 
     for (let index = 0; index < 14; index++) {
-        keys[event.target[index].name] = "";
+        keys[target[index].name] = "";
     }
+
     console.log('keys', keys);
     
 
     for (const key in keys) {
-        data_create[key] = event.target[key].value;
+        data_create[key] = target[key].value;
     }
 
     switch (data_create.position) {
@@ -782,8 +786,11 @@ const handleSubmit = (event) => {
 
     data_create['active'] = status;
 
+    validation(data_create);
+    console.log(data_create);
+    
     data[data_create.position].push(data_create);
-    console.log(data);
+    
 
     appendCards();
 }
