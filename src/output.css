@@ -610,6 +610,10 @@ video {
   margin-top: 9rem;
 }
 
+.block {
+  display: block;
+}
+
 .flex {
   display: flex;
 }

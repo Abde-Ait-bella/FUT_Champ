@@ -361,6 +361,15 @@ const p_detaille = document.createElement('p')
 p_detaille.style.fontWeight = "700";
 p_detaille.style.fontSize = "12px";
 
+var stats = [
+    ['PC', 'pace'],
+    ['SH', 'shooting'],
+    ['PS', 'passing'],
+    ['DR', 'dribbing'],
+    ['DE', 'definding'],
+    ['PH', 'physique'],
+]
+
 const fill_GK_card = () => {
 
     const GK = document.getElementById('card_0');
@@ -373,18 +382,9 @@ const fill_GK_card = () => {
 
         card_GK.children[0].children[0].children[0].textContent = GK_data[0].rating;
         card_GK.children[0].children[0].children[1].textContent = GK_data[0].position;
-        card_GK.children[0].children[1].children[0].textContent = GK_data[0].name?.toLocaleLowerCase();
+        card_GK.children[0].children[1].children[0].textContent = GK_data[0].name.toLocaleLowerCase();
         img_card.src = GK_data[0].photo;
         card_GK.children[0].appendChild(img_card.cloneNode(true));
-
-        var stats = [
-            ['PC', 'pace'],
-            ['SH', 'shooting'],
-            ['PS', 'passing'],
-            ['DR', 'dribbling'],
-            ['DE', 'defending'],
-            ['PH', 'physical'],
-        ]
 
         stats.map((stat) => {
             const div_reserve = div.cloneNode(true);
@@ -414,20 +414,11 @@ const fill_LB_card = () => {
 
     if (LB_data.length !== 0) {
 
-        card_LB.children[0].children[1].children[0].textContent = LB_data[0].name?.toLocaleLowerCase();
+        card_LB.children[0].children[1].children[0].textContent = LB_data[0].name.toLocaleLowerCase();
         card_LB.children[0].children[0].children[0].textContent = LB_data[0].rating;
         card_LB.children[0].children[0].children[1].textContent = LB_data[0].position;
         img_card.src = LB_data[0].photo;
         card_LB.children[0].appendChild(img_card.cloneNode(true));
-
-        var stats = [
-            ['PC', 'pace'],
-            ['SH', 'shooting'],
-            ['PS', 'passing'],
-            ['DR', 'dribbling'],
-            ['DE', 'defending'],
-            ['PH', 'physical'],
-        ]
 
         stats.map((stat) => {
             const div_reserve = div.cloneNode(true);
@@ -454,20 +445,11 @@ const fill_RB_card = () => {
 
     if (RB_data.length !== 0) {
 
-        card_RB.children[0].children[1].children[0].textContent = RB_data[0].name?.toLocaleLowerCase();
+        card_RB.children[0].children[1].children[0].textContent = RB_data[0].name.toLocaleLowerCase();
         card_RB.children[0].children[0].children[0].textContent = RB_data[0].rating;
         card_RB.children[0].children[0].children[1].textContent = RB_data[0].position;
         img_card.src = RB_data[0].photo;
         card_RB.children[0].appendChild(img_card.cloneNode(true));
-
-        var stats = [
-            ['PC', 'pace'],
-            ['SH', 'shooting'],
-            ['PS', 'passing'],
-            ['DR', 'dribbling'],
-            ['DE', 'defending'],
-            ['PH', 'physical'],
-        ]
 
         stats.map((stat) => {
             const div_reserve = div.cloneNode(true);
@@ -495,20 +477,11 @@ const fill_CB_card = () => {
         for (let index = 0; index < CB_data.length; index++) {
 
             const card_CB = card.cloneNode(true);
-            card_CB.children[0].children[1].children[0].textContent = CB_data[index].name?.toLocaleLowerCase();
+            card_CB.children[0].children[1].children[0].textContent = CB_data[index].name.toLocaleLowerCase();
             card_CB.children[0].children[0].children[0].textContent = CB_data[index].rating;
             card_CB.children[0].children[0].children[1].textContent = CB_data[index].position;
             img_card.src = CB_data[index]?.photo;
             card_CB.children[0].appendChild(img_card.cloneNode(true));
-
-            var stats = [
-                ['PC', 'pace'],
-                ['SH', 'shooting'],
-                ['PS', 'passing'],
-                ['DR', 'dribbling'],
-                ['DE', 'defending'],
-                ['PH', 'physical'],
-            ]
 
             stats.map((stat, i) => {
                 const div_reserve = div.cloneNode(true);
@@ -534,27 +507,18 @@ const fill_CB_card = () => {
 const fill_CM_card = () => {
 
     const CM_data = data.CM.filter((d) => d.active == true).splice(0, 3)
-    
-    
+
+
     if (CM_data.length !== 0) {
 
         CM_data.map((e, i) => {
 
             const card_CM = card.cloneNode(true);
-            card_CM.children[0].children[1].children[0].textContent = CM_data[i].name?.toLocaleLowerCase();
+            card_CM.children[0].children[1].children[0].textContent = CM_data[i].name.toLocaleLowerCase();
             card_CM.children[0].children[0].children[0].textContent = CM_data[i].rating;
             card_CM.children[0].children[0].children[1].textContent = CM_data[i].position;
             img_card.src = CM_data[i].photo;
             card_CM.children[0].appendChild(img_card.cloneNode(true));
-
-            var stats = [
-                ['PC', 'pace'],
-                ['SH', 'shooting'],
-                ['PS', 'passing'],
-                ['DR', 'dribbling'],
-                ['DE', 'defending'],
-                ['PH', 'physical'],
-            ]
 
             stats.map((stat) => {
                 const div_reserve = div.cloneNode(true);
@@ -584,20 +548,11 @@ const fill_ST_card = () => {
 
     if (ST_data.length !== 0) {
 
-        card_ST.children[0].children[1].children[0].textContent = ST_data[0].name?.toLocaleLowerCase();
+        card_ST.children[0].children[1].children[0].textContent = ST_data[0].name.toLocaleLowerCase();
         card_ST.children[0].children[0].children[0].textContent = ST_data[0].rating;
         card_ST.children[0].children[0].children[1].textContent = ST_data[0].position;
         img_card.src = ST_data[0].photo;
         card_ST.children[0].appendChild(img_card.cloneNode(true));
-
-        var stats = [
-            ['PC', 'pace'],
-            ['SH', 'shooting'],
-            ['PS', 'passing'],
-            ['DR', 'dribbling'],
-            ['DE', 'defending'],
-            ['PH', 'physical'],
-        ]
 
         stats.map((stat) => {
             const div_reserve = div.cloneNode(true);
@@ -623,20 +578,11 @@ const fill_RW_card = () => {
 
     if (RW_data.length !== 0) {
 
-        card_RW.children[0].children[1].children[0].textContent = RW_data[0].name?.toLocaleLowerCase();
+        card_RW.children[0].children[1].children[0].textContent = RW_data[0].name.toLocaleLowerCase();
         card_RW.children[0].children[0].children[0].textContent = RW_data[0].rating;
         card_RW.children[0].children[0].children[1].textContent = RW_data[0].position;
         img_card.src = RW_data[0].photo;
         card_RW.children[0].appendChild(img_card.cloneNode(true));
-
-        var stats = [
-            ['PC', 'pace'],
-            ['SH', 'shooting'],
-            ['PS', 'passing'],
-            ['DR', 'dribbling'],
-            ['DE', 'defending'],
-            ['PH', 'physical'],
-        ]
 
         stats.map((stat) => {
             const div_reserve = div.cloneNode(true);
@@ -662,20 +608,20 @@ const fill_LW_card = () => {
 
     if (LW_data.length !== 0) {
 
-        card_LW.children[0].children[1].children[0].textContent = LW_data[0].name?.toLocaleLowerCase();
+        card_LW.children[0].children[1].children[0].textContent = LW_data[0].name.toLocaleLowerCase();
         card_LW.children[0].children[0].children[0].textContent = LW_data[0].rating;
         card_LW.children[0].children[0].children[1].textContent = LW_data[0].position;
         img_card.src = LW_data[0].photo;
         card_LW.children[0].appendChild(img_card.cloneNode(true));
 
-        var stats = [
-            ['PC', 'pace'],
-            ['SH', 'shooting'],
-            ['PS', 'passing'],
-            ['DR', 'dribbling'],
-            ['DE', 'defending'],
-            ['PH', 'physical'],
-        ]
+        // var stats = [
+        //     ['PC', 'pace'],
+        //     ['SH', 'shooting'],
+        //     ['PS', 'passing'],
+        //     ['DR', 'definding'],
+        //     ['DE', 'defending'],
+        //     ['PH', 'physique'],
+        // ]
 
         stats.map((stat) => {
             const div_reserve = div.cloneNode(true);
@@ -742,7 +688,7 @@ const appendCards = () => {
     fill_LW_card();
 
     Array.from(terrain.children).map((e, i) => {
-        
+
         if (!e.children[0]) {
             console.log(formations[window.localStorage.getItem('formation')][i].left);
             card.style.left = formations[window.localStorage.getItem('formation')][i].left
@@ -796,27 +742,15 @@ const handleSubmit = (event) => {
     const keys = {};
 
     for (let index = 0; index < 14; index++) {
-            keys[event.target[index].name] = "";
+        keys[event.target[index].name] = "";
     }
-
-    // Array.from(form.children).map((e,i)=>{
-    //         keys[i] = event.target[i].name;
-    // })
-
     console.log('keys', keys);
     
 
-    // const keys = [
-    //     { "position": 0, "name": 1, "image": 2, "club": 3, "nationality": 4, "pace": 5, "shooting": 6, "passing": 7, "dribbling": 8, "defending": 9, "physical": 10, "ligue": 11 },
-    //     { "position": 0, "name": 1, "image": 2, "club": 3, "nationality": 4, "pace": 5, "shooting": 6, "passing": 7, "dribbling": 8, "defending": 9, "physical": 10, "ligue": 11 }
-    // ]
+    for (const key in keys) {
+        data_create[key] = event.target[key].value;
+    }
 
-    // const type_Player = event.target[0].value === "GK" ? 1 : 0;
-    
-        for (const key in keys) {
-            data_create[key] = event.target[key].value;
-        }
-    
     switch (data_create.position) {
         case "CB":
             var status = data[data_create.position].filter((e) => e.active).length === 2 ? false : true
@@ -849,9 +783,7 @@ const handleSubmit = (event) => {
     data_create['active'] = status;
 
     data[data_create.position].push(data_create);
-
-    console.log(data_create);
-    
+    console.log(data);
 
     appendCards();
 }
