@@ -10,7 +10,11 @@ module.exports = {
       spacing: {
         'img_width': '100%',
         // 'DF_width': '45rem',
-      }
+        
+      },
+      height: {
+        h_41_rem: '41rem',
+      },
     },
 
     screens: {

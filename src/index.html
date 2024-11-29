@@ -13,31 +13,40 @@
 
 <body class="relative ">
     <div class="">
-        <nav class="h-16 fixed z-10 w-full flex items-center bg-transparent backdrop-blur-sm">
+        <nav class="h-16 fixed z-10 w-full flex items-center justify-between bg-transparent backdrop-blur-sm">
             <div id="berger_menu" class="ms-8 p-3 px-5 cursor-pointer rounded-full flex bg-slate-500">
                 <i class="fa-solid fa-arrow-left transition-all ease-in-out  text-slate-950"></i>
             </div>
+            <div>
+                <select class="p-2 px-4 rounded-lg bg-slate-800 shadow-lg text-white me-10" name="" id="formation_selected" onchange="handleForamtion(event)">
+                    <option value="0">4-3-3</option>
+                    <option value="1">4-4-2</option>
+                </select>
+            </div>
         </nav>
         <div class="container_fut flex justify-end h-full bg-slate-800 ">
-            <div id="left_bar" class="h-full left-0 p-5 bg-[url('./assets/img/grass.jpg')] bg-no-repeat pt-20 bg-gray-900 tablet:w-5/12 desktop:w-96 telephone:w-9/12 transition-all duration-500 ease-in-out absolute">
+            <div id="left_bar"
+                class="h-full z-[1] left-0 p-5 bg-[url('./assets/img/grass.jpg')] bg-no-repeat pt-20 bg-gray-900 tablet:w-5/12 desktop:w-96 telephone:w-9/12 transition-all duration-500 ease-in-out absolute">
                 <div class="absolute bottom-0 left-0 w-full h-full bg-slate-950 opacity-70 z-0"></div>
-                <div id="form" class="grid fixed gap-3 p-3 justify-center transition-all duration-300 ease-in-out">
-                    <form class="max-w-sm z-10 w-80 transition-all duration-300 ease-in-out" onsubmit="handleSubmit(event)">
+                <div id="form" class="grid gap-3 p-3 justify-center transition-all duration-300 ease-in-out">
+                    <form class="max-w-sm z-10 w-80 transition-all duration-300 ease-in-out"
+                        onsubmit="handleSubmit(event)">
                         <div class="md:flex md:items-center mb-6">
                             <div class="md:w-1/3">
                             </div>
                             <div class="md:w-2/3">
-                                <select 
+                                <select
+                                onchange="toggleForm(event)"
                                     class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-700 text-slate-950"
-                                    name="" id="">
+                                    name="position" id="">
                                     <option class="text-gray-400" value="">Poste de joueur</option>
                                     <option class="text-gray-400" value="GK">GK</option>
                                     <option class="text-gray-950" value="CB">CB</option>
                                     <option class="text-gray-950" value="LB">LB</option>
                                     <option class="text-gray-950" value="RB">RB</option>
                                     <option class="text-gray-950" value="CM">CM</option>
-                                    <option class="text-gray-950" value="RM">RM</option>
-                                    <option class="text-gray-950" value="LM">LM</option>
+                                    <option class="text-gray-950" value="RW">RW</option>
+                                    <option class="text-gray-950" value="LW">LW</option>
                                     <option class="text-gray-950" value="ST">ST</option>
                                 </select>
                             </div>
@@ -46,18 +55,18 @@
                             <div class="flex gap-3 md:w-2/3">
                                 <input
                                     class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
-                                    type="text" placeholder="Nom">
+                                    type="text" name="Nom" placeholder="Nom">
                                 <input
                                     class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
-                                    type="text" placeholder="Image">
+                                    type="text" name="Image" placeholder="Image">
                             </div>
                             <div class="flex gap-3 md:w-2/3">
                                 <input
                                     class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
-                                    type="text" placeholder="Club" >
+                                    type="text" name="Club" placeholder="Club">
                                 <select
                                     class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-700 text-slate-950"
-                                    name="" id="">
+                                    name="nationality" id="">
                                     <option class="text-gray-400" value="">Nationalité</option>
                                     <option class="text-gray-400" value="USA">USA</option>
                                     <option class="text-gray-950" value="FRANCE">FRANCE</option>
@@ -66,81 +75,91 @@
                                     <option class="text-gray-950" value="GERMANY">GERMANY</option>
                                 </select>
                             </div>
-                            <div class="flex gap-3 md:w-2/3">
-                                <input
-                                    class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
-                                    type="text" placeholder="Pace" >
-                                <input
-                                    class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
-                                    type="text" placeholder="Shooting" >
+                            <div id="player_carater" class="grid gap-3">
+                                <div class="flex gap-3 md:w-2/3">
+                                    <input
+                                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
+                                        type="number" name="Pace" placeholder="Pace">
+                                    <input
+                                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
+                                        type="number" name="Shooting" placeholder="Shooting">
+                                </div>
+                                <div class="flex gap-3 md:w-2/3">
+                                    <input
+                                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
+                                        type="number" name="Passing" placeholder="Passing">
+                                    <input
+                                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
+                                        type="number" name="Dribbing" placeholder="Dribbing">
+                                </div>
+                                <div class="flex gap-3 md:w-2/3">
+                                    <input
+                                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
+                                        type="number" name="Definding" placeholder="Definding">
+                                    <input
+                                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
+                                        type="number" name="Physique" placeholder="Physique">
+                                </div>
+                                <div class="flex gap-3 md:w-2/3">
+                                    <input
+                                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
+                                        type="number" name="rating" placeholder="rating">
+                                    <input
+                                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
+                                        type="text" name="logo" placeholder="logo">
+                                </div>
+                                <div class="flex gap-3 md:w-2/3">
+                                    <input
+                                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
+                                        type="text" name="flag" placeholder="flag">
+                                    <input
+                                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
+                                        type="text" name="club" placeholder="club">
+                                </div>
                             </div>
-                            <div class="flex gap-3 md:w-2/3">
-                                <input
-                                    class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
-                                    type="text" placeholder="Passing" >
-                                <input
-                                    class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
-                                    type="text" placeholder="Dribbing" >
+
+                            <div id="GK_carater" class="hidden gap-3">
+                                <div class="flex gap-3 md:w-2/3">
+                                    <input
+                                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
+                                        type="number" placeholder="GK">
+                                    <input
+                                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
+                                        type="number" placeholder="GK">
+                                </div>
+                                <div class="flex gap-3 md:w-2/3">
+                                    <input
+                                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
+                                        type="number" placeholder="GK">
+                                    <input
+                                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
+                                        type="number" placeholder="GK">
+                                </div>
+                                <div class="flex gap-3 md:w-2/3">
+                                    <input
+                                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
+                                        type="number" placeholder="GK">
+                                    <input
+                                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
+                                        type="number" placeholder="GK">
+                                </div>
                             </div>
-                            <div class="flex gap-3 md:w-2/3">
-                                <input
-                                    class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
-                                    type="text" placeholder="Definding" >
-                                <input
-                                    class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
-                                    type="text" placeholder="Physique">
-                            </div>
-                            <div class="flex gap-3 md:w-2/3">
-                                <select  
-                                    class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-700 text-slate-950"
-                                    name="" id="">
-                                    <option class="text-gray-400" value="Ligue">Ligue</option>
-                                    <option class="text-gray-400" value="USA">USA</option>
-                                    <option class="text-gray-950" value="FRANCE">FRANCE</option>
-                                    <option class="text-gray-950" value="MOROCCO">MOROCCO</option>
-                                    <option class="text-gray-950" value="ESPANE">ESPANE</option>
-                                    <option class="text-gray-950" value="GERMANY">GERMANY</option>
-                                </select>
-                            </div>
-    
                         </div>
                         <div class="md:flex md:items-center">
-                            <!-- <div class="md:w-1/3"></div> -->
                             <div class="md:w-2/3">
                                 <button
                                     class="shadow bg-slate-600 hover:bg-slate-400 text-slate-900 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
-                                    type="submit" >
+                                    type="submit">
                                     Ajouter
                                 </button>
                             </div>
                         </div>
                     </form>
-    
+
                 </div>
             </div>
             <div id="terrain"
-                class="grid justify-center items-end bg-contain pt-16 bg-transparent bg-right bg-gray-600 w-8/12 me-5 relative bg-[url('./assets/svg/terrain.svg')] bg-no-repeat transition-all duration-700 ease-in-out ">
-                <div id="ST" class="grid grid-cols-3 content-center justify-items-center px-28">
-                    <div class="ST1"></div>
-                    <div class=""></div>
-                    <div class=""></div>
-                </div>
-                <div id="CM" class="grid grid-cols-3 content-center justify-items-center px-5">
-                    <div id="LM"></div>
-                    <div id="ST"></div>
-                    <div id="RM"></div>
-                </div>
-                <div id="DF"
-                    class="grid grid-cols-4 content-center justify-items-center justify-between items-end w-img_width">
-                    <div id="LB" class="mb-4"></div>
-                    <div id="CB" class="grid grid-cols-2 w-full col-span-2 justify-items-center">
-                        <div>
-                        </div>
-                        <div></div>
-                    </div>
-                    <div id="RB" class="mb-4"></div>
-                </div>
-                <div id="GK" class="grid justify-center"></div>
+                class="grid justify-center items-end bg-contain mt-36 bg-transparent bg-right bg-gray-600 w-8/12 h-[41rem] me-5 relative bg-[url('./assets/svg/terrain.svg')] bg-no-repeat transition-all duration-700 ease-in-out ">
             </div>
         </div>
     </div>
