@@ -24,15 +24,18 @@ const toggle = () => {
     nav.classList.toggle("telephone:w-1/12")
 
     if (nav.classList.contains("desktop:w-96")) {
-        nav.classList.remove("desktop:w-96")
-        nav.classList.add("desktop:w-14")
+        nav.classList.replace("desktop:w-96", "desktop:w-14")
+        // nav.classList.remove("desktop:w-96")
+        // nav.classList.add("desktop:w-14")
+        // nav.classList.replace("tablet:w-5/12", "tablet:w-14")
         terrain.classList.replace("bg-right", "bg-center")
         terrain.classList.replace("w-8/12", "w-11/12")
         document.forms[0].classList.replace("w-80", "w-2")
 
     } else {
-        nav.classList.remove("desktop:w-14")
-        nav.classList.add("desktop:w-96")
+        // nav.classList.add("desktop:w-14")
+        nav.classList.replace("desktop:w-14", "desktop:w-96")
+        // nav.classList.replace("tablet:w-5/12", "tablet:w-14")
         terrain.classList.replace("bg-center", "bg-right")
         terrain.classList.replace("w-11/12", "w-8/12")
         document.forms[0].classList.replace("w-2", "w-80")
@@ -365,9 +368,9 @@ var stats = [
     ['PC', 'pace'],
     ['SH', 'shooting'],
     ['PS', 'passing'],
-    ['DR', 'dribbing'],
-    ['DE', 'definding'],
-    ['PH', 'physique'],
+    ['DR', 'dribbling'],
+    ['DE', 'defending'],
+    ['PH', 'physical'],
 ]
 
 const fill_GK_card = () => {
@@ -377,6 +380,8 @@ const fill_GK_card = () => {
     const card_GK = card.cloneNode(true)
 
     const GK_data = data.GK.filter((d) => d.active == true)
+    console.log(GK_data);
+    
 
     if (GK_data.length !== 0) {
 
@@ -439,8 +444,10 @@ const fill_LB_card = () => {
 const fill_RB_card = () => {
 
     const RB = document.getElementById('card_4');
+
     const card_RB = card.cloneNode(true)
     const RB_data = data.RB.filter((d) => d.active == true).slice(0, 1)
+    
 
 
     if (RB_data.length !== 0) {
@@ -480,7 +487,7 @@ const fill_CB_card = () => {
             card_CB.children[0].children[1].children[0].textContent = CB_data[index].name.toLocaleLowerCase();
             card_CB.children[0].children[0].children[0].textContent = CB_data[index].rating;
             card_CB.children[0].children[0].children[1].textContent = CB_data[index].position;
-            img_card.src = CB_data[index]?.photo;
+            img_card.src = CB_data[0].photo;
             card_CB.children[0].appendChild(img_card.cloneNode(true));
 
             stats.map((stat, i) => {
@@ -517,7 +524,7 @@ const fill_CM_card = () => {
             card_CM.children[0].children[1].children[0].textContent = CM_data[i].name.toLocaleLowerCase();
             card_CM.children[0].children[0].children[0].textContent = CM_data[i].rating;
             card_CM.children[0].children[0].children[1].textContent = CM_data[i].position;
-            img_card.src = CM_data[i].photo;
+            img_card.src = CM_data[0].photo;
             card_CM.children[0].appendChild(img_card.cloneNode(true));
 
             stats.map((stat) => {
@@ -581,8 +588,7 @@ const fill_RW_card = () => {
         card_RW.children[0].children[1].children[0].textContent = RW_data[0].name.toLocaleLowerCase();
         card_RW.children[0].children[0].children[0].textContent = RW_data[0].rating;
         card_RW.children[0].children[0].children[1].textContent = RW_data[0].position;
-        img_card.src = RW_data[0].photo;
-        card_RW.children[0].appendChild(img_card.cloneNode(true));
+        img_card.src =  RW_data[0].photo;        card_RW.children[0].appendChild(img_card.cloneNode(true));
 
         stats.map((stat) => {
             const div_reserve = div.cloneNode(true);
@@ -611,8 +617,7 @@ const fill_LW_card = () => {
         card_LW.children[0].children[1].children[0].textContent = LW_data[0].name.toLocaleLowerCase();
         card_LW.children[0].children[0].children[0].textContent = LW_data[0].rating;
         card_LW.children[0].children[0].children[1].textContent = LW_data[0].position;
-        img_card.src = LW_data[0].photo;
-        card_LW.children[0].appendChild(img_card.cloneNode(true));
+        img_card.src = LW_data[0].photo;        card_LW.children[0].appendChild(img_card.cloneNode(true));
 
         stats.map((stat) => {
             const div_reserve = div.cloneNode(true);
@@ -650,11 +655,6 @@ const defaultCardShow = () => {
         terrain.appendChild(div.cloneNode(true));
     })
 }
-for (let index = 0; index < 11; index++) {
-
-    const elemens = document.querySelectorAll(`#card_${index}`);
-
-}
 
 function handleForamtion(event) {
 
@@ -662,13 +662,12 @@ function handleForamtion(event) {
         terrain.children[i].style.left = p.left
         terrain.children[i].style.bottom = p.bottom
     })
-
     window.localStorage.setItem("formation", event.currentTarget.value)
 }
 
 const appendCards = () => {
-    defaultCardShow();
 
+    defaultCardShow();
     fill_GK_card();
     fill_LB_card();
     fill_RB_card();
@@ -679,9 +678,7 @@ const appendCards = () => {
     fill_LW_card();
 
     Array.from(terrain.children).map((e, i) => {
-
         if (!e.children[0]) {
-            console.log(formations[window.localStorage.getItem('formation')][i].left);
             card.style.left = formations[window.localStorage.getItem('formation')][i].left
             card.style.bottom = formations[window.localStorage.getItem('formation')][i].bottom
             e.appendChild(card.cloneNode(true));
@@ -708,7 +705,6 @@ function animation_card() {
 
         })
     })
-
 }
 
 animation_card();
@@ -727,32 +723,56 @@ const toggleForm = (event) => {
     }
 }
 
-const validation = (data)=>{
-    // const caracter_validation = /^[3-9][0-9]|99$/
-    // for (let i = 0; i < array.length; i++) {
-    //     const element = array[i];
-        
-    // }
-    // if (caracter_validation.test(data)) {
-        
-    // }
-} 
+const validation = (data, keys, position) => {
+
+    const caracter_validation = /^[1-9][0-9]|99$/
+
+    const carater = [
+        ["rating", "pace", "shooting", "passing", "dribbling", "defending", "physical"],
+        ["rating", "diving", "handling", "kicking", "reflexes", "speed", "positioning"]
+    ];
+    const type_car =  position == "GK" ? 1 : 0
+
+    for (const key in keys) {
+        if (data[key] != "") {
+            validate = true;
+        } else {
+            return validate = `${key} is not complete`;
+        }
+    }
+    
+    for (let i = 0; i < 7; i++) {
+        if (caracter_validation.test(data[carater[type_car][i]])) {
+            validate = true;
+        } else {
+            return validate = `${carater[type_car][i]} is not valide`;
+        }
+    }
+
+    return validate;
+
+}
 
 const handleSubmit = (event) => {
-    const {target} = event;
+    const { target } = event;
     event.preventDefault();
     const data_create = {};
     const keys = {};
+    const position = target[0].value;
 
-    for (let index = 0; index < 14; index++) {
-        keys[target[index].name] = "";
+    for (let index = 0; index < 20; index++) {
+        if (position != "GK" && index < 14) {
+            keys[target[index].name] = "";
+        } else if (position == "GK") {
+            index < 8 || index > 13 ? keys[target[index].name] = "" : ""
+        }
     }
 
-    console.log('keys', keys);
-    
-
     for (const key in keys) {
-        data_create[key] = target[key].value;
+        if (key === 3) {
+            continue; 
+          }
+        data_create[key] = target[key].value ;
     }
 
     switch (data_create.position) {
@@ -783,15 +803,22 @@ const handleSubmit = (event) => {
         default:
             break;
     }
-
+    
+    
+    const blob = new Blob([target[3].files[0]], { type: 'image/png' });
+    data_create['photo'] = URL.createObjectURL(blob)
     data_create['active'] = status;
 
-    validation(data_create);
-    console.log(data_create);
+    const isValidat = validation(data_create, keys, position);
     
-    data[data_create.position].push(data_create);
-    
-
+    if (isValidat === true) {
+        data[data_create.position].push(data_create);
+    } else {
+        Swal.fire({
+            icon: "warning",
+            text: `${isValidat}`,
+          });
+        }
     appendCards();
 }
 

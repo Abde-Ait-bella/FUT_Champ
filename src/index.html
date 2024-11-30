@@ -18,7 +18,8 @@
                 <i class="fa-solid fa-arrow-left transition-all ease-in-out  text-slate-950"></i>
             </div>
             <div>
-                <select class="p-2 px-4 rounded-lg bg-slate-800 shadow-lg text-white me-10" name="" id="formation_selected" onchange="handleForamtion(event)">
+                <select class="p-2 px-4 text-center rounded-lg bg-slate-800 shadow-lg text-white me-10 tablet:w-52"
+                    name="" id="formation_selected" onchange="handleForamtion(event)">
                     <option value="0">4-3-3</option>
                     <option value="1">4-4-2</option>
                 </select>
@@ -35,9 +36,8 @@
                             <div class="md:w-1/3">
                             </div>
                             <div class="md:w-2/3">
-                                <select
-                                onchange="toggleForm(event)"
-                                    class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-700 text-slate-950"
+                                <select onchange="toggleForm(event)"
+                                    class="bg-gray-200 appearance-none border-gray-200 rounded w-full py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-700 text-slate-950"
                                     name="position" id="">
                                     <option class="text-gray-400" value="">Poste de joueur</option>
                                     <option class="text-gray-400" value="GK">GK</option>
@@ -54,96 +54,93 @@
                         <div class="grid gap-3 md:items-center mb-6">
                             <div class="flex gap-3 md:w-2/3">
                                 <input
-                                    class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
+                                    class="bg-gray-200 appearance-none border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
                                     type="text" name="name" placeholder="name">
-                                <input
-                                    class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
-                                    type="text" name="image" placeholder="image">
-                            </div>
+                                        <select
+                                            class="bg-gray-200 appearance-none border-gray-200 rounded w-full py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-700 text-slate-950"
+                                            name="nationality" id="">
+                                            <option class="text-gray-400" value="">Nationalité</option>
+                                            <option class="text-gray-400" value="USA">USA</option>
+                                            <option class="text-gray-950" value="FRANCE">FRANCE</option>
+                                            <option class="text-gray-950" value="MOROCCO">MOROCCO</option>
+                                            <option class="text-gray-950" value="ESPANE">ESPANE</option>
+                                            <option class="text-gray-950" value="GERMANY">GERMANY</option>
+                                        </select>
+                                </div>
+                                <input type="file" name="photo" id="input_img"
+                                  class="w-full text-gray-500 font-medium text-sm bg-gray-100 file:cursor-pointer cursor-pointer file:border-0 file:py-2 file:px-4 file:mr-4 file:bg-gray-800 file:hover:bg-gray-700 file:text-white rounded" />
                             <div class="flex gap-3 md:w-2/3">
                                 <input
-                                    class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
-                                    type="text" name="club" placeholder="club">
-                                <select
-                                    class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-700 text-slate-950"
-                                    name="nationality" id="">
-                                    <option class="text-gray-400" value="">Nationalité</option>
-                                    <option class="text-gray-400" value="USA">USA</option>
-                                    <option class="text-gray-950" value="FRANCE">FRANCE</option>
-                                    <option class="text-gray-950" value="MOROCCO">MOROCCO</option>
-                                    <option class="text-gray-950" value="ESPANE">ESPANE</option>
-                                    <option class="text-gray-950" value="GERMANY">GERMANY</option>
-                                </select>
-                            </div>
-                            <div class="flex gap-3 md:w-2/3">
-                                <input
-                                    class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
+                                    class="bg-gray-200 appearance-none border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
                                     type="text" name="flag" placeholder="flag">
                                 <input
-                                    class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
+                                    class="bg-gray-200 appearance-none border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
                                     type="text" name="club" placeholder="club">
                             </div>
+                            <div class="flex gap-3 md:w-2/3">
+                                <input
+                                    class="bg-gray-200 appearance-none border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
+                                    type="text" name="logo" placeholder="logo">
+                                <input
+                                    class="bg-gray-200 appearance-none border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
+                                    type="number" name="rating" placeholder="rating">
+                            </div>
+
                             <div id="player_carater" class="grid gap-3">
                                 <div class="flex gap-3 md:w-2/3">
                                     <input
-                                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
-                                        type="text" name="logo" placeholder="logo">
-                                    <input
-                                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
-                                        type="number" name="rating" placeholder="rating">
-                                </div>
-                                <div class="flex gap-3 md:w-2/3">
-                                    <input
-                                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
+                                        class="bg-gray-200 appearance-none border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
                                         type="number" name="pace" placeholder="pace">
                                     <input
-                                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
+                                        class="bg-gray-200 appearance-none border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
                                         type="number" name="shooting" placeholder="shooting">
                                 </div>
                                 <div class="flex gap-3 md:w-2/3">
                                     <input
-                                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
+                                        class="bg-gray-200 appearance-none border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
                                         type="number" name="passing" placeholder="passing">
                                     <input
-                                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
-                                        type="number" name="dribbing" placeholder="dribbing">
+                                        class="bg-gray-200 appearance-none border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
+                                        type="number" name="dribbling" placeholder="dribbling">
                                 </div>
                                 <div class="flex gap-3 md:w-2/3">
                                     <input
-                                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
-                                        type="number" name="definding" placeholder="definding">
+                                        class="bg-gray-200 appearance-none border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
+                                        type="number" name="defending" placeholder="defending">
                                     <input
-                                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
-                                        type="number" name="physique" placeholder="physique">
+                                        class="bg-gray-200 appearance-none border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
+                                        type="number" name="physical" placeholder="physical">
                                 </div>
                             </div>
 
                             <div id="GK_carater" class="hidden gap-3">
                                 <div class="flex gap-3 md:w-2/3">
                                     <input
-                                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
-                                        type="GK" placeholder="GK">
+                                        class="bg-gray-200 appearance-none border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
+                                        type="number" name="diving" placeholder="diving">
                                     <input
-                                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
-                                        type="number" placeholder="GK">
+                                        class="bg-gray-200 appearance-none border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
+                                        type="number" name="handling" placeholder="handling">
                                 </div>
                                 <div class="flex gap-3 md:w-2/3">
                                     <input
-                                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
-                                        type="number" placeholder="GK">
+                                        class="bg-gray-200 appearance-none border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
+                                        type="number" name="kicking" placeholder="kicking">
                                     <input
-                                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
-                                        type="number" placeholder="GK">
+                                        class="bg-gray-200 appearance-none border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
+                                        type="number" name="reflexes" placeholder="reflexes">
                                 </div>
                                 <div class="flex gap-3 md:w-2/3">
                                     <input
-                                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
-                                        type="number" placeholder="GK">
+                                        class="bg-gray-200 appearance-none border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
+                                        type="number" name="speed" placeholder="speed">
                                     <input
-                                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
-                                        type="number" placeholder="GK">
+                                        class="bg-gray-200 appearance-none border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-700"
+                                        type="number" name="positioning" placeholder="positioning">
                                 </div>
                             </div>
+
+
                         </div>
                         <div class="md:flex md:items-center">
                             <div class="md:w-2/3">
@@ -163,6 +160,7 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./script.js"></script>
 </body>
 
