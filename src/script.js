@@ -285,76 +285,29 @@ const formations = [
 
 const createCard = () => {
 
-    card.style.cssText = `
-        background-image: url("./assets/img/card.webp");
-        background-size: contain;
-        background-repeat: no-repeat;
-        height: 13rem;
-        background-position: center;
-        width: 10rem;
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-    `
-
-    div_detaille.style.cssText = `
-        position: absolute;
-        bottom: 39px;
-        left: 0;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        color: white;
-        flex-direction: column;
-    `
-    div_detaille_elem.style.cssText = `
-        display: flex;
-        justify-content: center; 
-        gap: 3px;
-        font-size: 11px;
-        font-weight: 500;
-        font-family: system-ui;
-    `
-
-    p.style.cssText = `
-        font-weight: bold;
-        text-transform: capitalize;
-        text-align: center;
-        width : 6.5rem;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    `
-
-    div_position.style.cssText = `
-            top: 45px;
-            position: absolute;
-            left: 28px;
-            color: white;
-            font-weight: 300;
-            font-family: fantasy;
-            font-size: larger;
-    `
-    img_card.style.cssText = `
-        height: 5rem;
-    margin-top: 52px;
-    `
+    card.classList.add('card');
+    div_detaille.classList.add('card_detaille')
+    div_detaille_elem.classList.add('card_detaille_elem')
+    p.classList.add('card_paragraph')
+    div_position.classList.add("card_position")
+    img_card.classList.add('card_image')
     const div = document.createElement('div');
     div.classList.add('relative');
     div.classList.add('w-full');
     div.classList.add('grid');
     div.classList.add('justify-center');
-
+    
     div_position.appendChild(div_position_left);
     div_position.appendChild(div_position_right);
-
+    
     div_detaille.appendChild(p);
     div_detaille.appendChild(div_detaille_elem);
     div_detaille.appendChild(div_natio_club);
-
+    
     div.appendChild(div_position);
     div.appendChild(div_detaille);
     card.append(div);
+    div_position.children[0].classList.add('card_rating')
 
     appendCards(card);
 
@@ -380,8 +333,6 @@ const fill_GK_card = () => {
     const card_GK = card.cloneNode(true)
 
     const GK_data = data.GK.filter((d) => d.active == true)
-    console.log(GK_data);
-    
 
     if (GK_data.length !== 0) {
 
@@ -447,7 +398,7 @@ const fill_RB_card = () => {
 
     const card_RB = card.cloneNode(true)
     const RB_data = data.RB.filter((d) => d.active == true).slice(0, 1)
-    
+
 
 
     if (RB_data.length !== 0) {
@@ -588,7 +539,7 @@ const fill_RW_card = () => {
         card_RW.children[0].children[1].children[0].textContent = RW_data[0].name.toLocaleLowerCase();
         card_RW.children[0].children[0].children[0].textContent = RW_data[0].rating;
         card_RW.children[0].children[0].children[1].textContent = RW_data[0].position;
-        img_card.src =  RW_data[0].photo;        card_RW.children[0].appendChild(img_card.cloneNode(true));
+        img_card.src = RW_data[0].photo; card_RW.children[0].appendChild(img_card.cloneNode(true));
 
         stats.map((stat) => {
             const div_reserve = div.cloneNode(true);
@@ -617,7 +568,7 @@ const fill_LW_card = () => {
         card_LW.children[0].children[1].children[0].textContent = LW_data[0].name.toLocaleLowerCase();
         card_LW.children[0].children[0].children[0].textContent = LW_data[0].rating;
         card_LW.children[0].children[0].children[1].textContent = LW_data[0].position;
-        img_card.src = LW_data[0].photo;        card_LW.children[0].appendChild(img_card.cloneNode(true));
+        img_card.src = LW_data[0].photo; card_LW.children[0].appendChild(img_card.cloneNode(true));
 
         stats.map((stat) => {
             const div_reserve = div.cloneNode(true);
@@ -731,7 +682,7 @@ const validation = (data, keys, position) => {
         ["rating", "pace", "shooting", "passing", "dribbling", "defending", "physical"],
         ["rating", "diving", "handling", "kicking", "reflexes", "speed", "positioning"]
     ];
-    const type_car =  position == "GK" ? 1 : 0
+    const type_car = position == "GK" ? 1 : 0
 
     for (const key in keys) {
         if (data[key] != "") {
@@ -740,7 +691,7 @@ const validation = (data, keys, position) => {
             return validate = `${key} is not complete`;
         }
     }
-    
+
     for (let i = 0; i < 7; i++) {
         if (caracter_validation.test(data[carater[type_car][i]])) {
             validate = true;
@@ -770,9 +721,9 @@ const handleSubmit = (event) => {
 
     for (const key in keys) {
         if (key === 3) {
-            continue; 
-          }
-        data_create[key] = target[key].value ;
+            continue;
+        }
+        data_create[key] = target[key].value;
     }
 
     switch (data_create.position) {
@@ -803,22 +754,22 @@ const handleSubmit = (event) => {
         default:
             break;
     }
-    
-    
+
+
     const blob = new Blob([target[3].files[0]], { type: 'image/png' });
     data_create['photo'] = URL.createObjectURL(blob)
     data_create['active'] = status;
 
     const isValidat = validation(data_create, keys, position);
-    
+
     if (isValidat === true) {
         data[data_create.position].push(data_create);
     } else {
         Swal.fire({
             icon: "warning",
             text: `${isValidat}`,
-          });
-        }
+        });
+    }
     appendCards();
 }
 

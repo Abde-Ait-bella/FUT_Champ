@@ -825,10 +825,6 @@ video {
   font-weight: 500;
 }
 
-.capitalize {
-  text-transform: capitalize;
-}
-
 .leading-tight {
   line-height: 1.25;
 }
@@ -929,6 +925,69 @@ video {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.card{
+  background-image: url("./assets/img/card.webp");
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 13rem;
+  background-position: center;
+  width: 10rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+
+.card_detaille{
+  position: absolute;
+  bottom: 39px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  color: white;
+  flex-direction: column;
+}
+
+.card_detaille_elem{
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+  font-size: 11px;
+  font-weight: 100;
+  font-family: system-ui;
+  line-height: 1.3;
+}
+
+.card_paragraph{
+  font-weight: bold;
+  text-transform: capitalize;
+  text-align: center;
+  width : 6.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card_position{
+  top: 45px;
+  position: absolute;
+  left: 28px;
+  color: white;
+  /* text-align: center; */
+}
+
+.card_image{
+  height: 5rem;
+  margin-top: 52px;
+}
+
+.card_rating{
+  font-weight: 300;
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1;
+}
+
 .file\:mr-4::file-selector-button {
   margin-right: 1rem;
 }
@@ -939,21 +998,6 @@ video {
 
 .file\:border-0::file-selector-button {
   border-width: 0px;
-}
-
-.file\:bg-gray-800::file-selector-button {
-  --tw-bg-opacity: 1;
-  background-color: rgb(31 41 55 / var(--tw-bg-opacity, 1));
-}
-
-.file\:bg-slate-900::file-selector-button {
-  --tw-bg-opacity: 1;
-  background-color: rgb(15 23 42 / var(--tw-bg-opacity, 1));
-}
-
-.file\:bg-slate-800::file-selector-button {
-  --tw-bg-opacity: 1;
-  background-color: rgb(30 41 59 / var(--tw-bg-opacity, 1));
 }
 
 .file\:bg-slate-700::file-selector-button {
