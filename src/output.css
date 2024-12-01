@@ -622,6 +622,10 @@ video {
   height: 4rem;
 }
 
+.h-\[20px\] {
+  height: 20px;
+}
+
 .h-\[41rem\] {
   height: 41rem;
 }
@@ -644,6 +648,14 @@ video {
 
 .w-80 {
   width: 20rem;
+}
+
+.w-\[25px\] {
+  width: 25px;
+}
+
+.w-\[2rem\] {
+  width: 2rem;
 }
 
 .w-full {
@@ -688,6 +700,10 @@ video {
   justify-content: space-between;
 }
 
+.gap-2 {
+  gap: 0.5rem;
+}
+
 .gap-3 {
   gap: 0.75rem;
 }
@@ -702,6 +718,19 @@ video {
 
 .rounded-lg {
   border-radius: 0.5rem;
+}
+
+.rounded-md {
+  border-radius: 0.375rem;
+}
+
+.rounded-sm {
+  border-radius: 0.125rem;
+}
+
+.rounded-s {
+  border-start-start-radius: 0.25rem;
+  border-end-start-radius: 0.25rem;
 }
 
 .border-gray-200 {
@@ -751,6 +780,11 @@ video {
 
 .bg-transparent {
   background-color: transparent;
+}
+
+.bg-slate-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(51 65 85 / var(--tw-bg-opacity, 1));
 }
 
 .bg-\[url\(\'\.\/assets\/img\/grass\.jpg\'\)\] {
@@ -849,6 +883,11 @@ video {
   color: rgb(3 7 18 / var(--tw-text-opacity, 1));
 }
 
+.text-slate-700 {
+  --tw-text-opacity: 1;
+  color: rgb(51 65 85 / var(--tw-text-opacity, 1));
+}
+
 .text-slate-900 {
   --tw-text-opacity: 1;
   color: rgb(15 23 42 / var(--tw-text-opacity, 1));
@@ -866,6 +905,10 @@ video {
 
 .opacity-70 {
   opacity: 0.7;
+}
+
+.opacity-90 {
+  opacity: 0.9;
 }
 
 .shadow {
@@ -939,7 +982,7 @@ video {
 
 .card_detaille{
   position: absolute;
-  bottom: 39px;
+  bottom: 30px;
   left: 0;
   width: 100%;
   display: flex;
@@ -974,7 +1017,6 @@ video {
   position: absolute;
   left: 28px;
   color: white;
-  /* text-align: center; */
 }
 
 .card_image{
@@ -995,7 +1037,27 @@ video {
 }
 
 .custom-text{
-  text-transform: capitalize;
+  text-transform: capitalize ;
+}
+
+.ts-wrapper{
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  box-shadow: -4px 7px 8px rgba(0, 0, 0, 0.2);
+}
+
+.ts-control, .ts-wrapper.single.input-active .ts-control{
+  background: rgb(229 231 235) !important;
+}
+
+.ts-dropdown{
+  background-color: rgb(229 231 235) !important;
+}
+
+.ts-dropdown, .ts-control, .ts-control input{
+  font-size: 16px !important;
+  padding: 0.5rem 1rem !important;
 }
 
 .file\:mr-4::file-selector-button {

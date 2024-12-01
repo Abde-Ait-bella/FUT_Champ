@@ -16,7 +16,7 @@
 
 .card_detaille{
     position: absolute;
-    bottom: 39px;
+    bottom: 30px;
     left: 0;
     width: 100%;
     display: flex;
@@ -50,7 +50,6 @@
     position: absolute;
     left: 28px;
     color: white;
-    /* text-align: center; */
 }
 .card_image{
     height: 5rem;
@@ -68,5 +67,25 @@
     padding: 7px 50px;
 }
 .custom-text{
-    text-transform: capitalize;
+    text-transform: capitalize ;
 }
+
+.ts-wrapper{
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    box-shadow: -4px 7px 8px rgba(0, 0, 0, 0.2);
+}
+
+.ts-control, .ts-wrapper.single.input-active .ts-control{
+background: rgb(229 231 235) !important;
+}
+
+.ts-dropdown{
+    background-color: rgb(229 231 235) !important;
+}
+
+.ts-dropdown, .ts-control, .ts-control input{
+    font-size: 16px !important;
+    padding: 0.5rem 1rem !important;
+    }

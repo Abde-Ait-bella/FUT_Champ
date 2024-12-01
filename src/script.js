@@ -11,9 +11,18 @@ const div_natio_club = document.createElement('div');
 const div_position = document.createElement('div');
 const div_position_left = document.createElement('div');
 const div_position_right = document.createElement('div');
+const img = document.createElement('img');
 const div = document.createElement('div');
 const img_card = document.createElement('img');
 
+
+
+const d = null;
+
+fetch('./players.json')
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Erreur:', error));
 
 const closeNav = () => {
     nav.classList.add("telephone:w-1/12")
@@ -297,14 +306,14 @@ const createCard = () => {
     div.classList.add('w-full');
     div.classList.add('grid');
     div.classList.add('justify-center');
-    
+
     div_position.appendChild(div_position_left);
     div_position.appendChild(div_position_right);
-    
+
     div_detaille.appendChild(p);
     div_detaille.appendChild(div_detaille_elem);
     div_detaille.appendChild(div_natio_club);
-    
+
     div.appendChild(div_position);
     div.appendChild(div_detaille);
     card.append(div);
@@ -351,6 +360,10 @@ const fill_GK_card = () => {
             div_reserve.appendChild(p_resreve)
             card_GK.children[0].children[1].children[1].appendChild(div_reserve);
         })
+        const img_nationalite = img.cloneNode(true);
+        img_nationalite.src = GK_data[0].nationality.replace(/&amp;/g, '&');
+        img_nationalite.classList.add('w-[25px]');
+        card_GK.children[0].children[1].children[2].appendChild(img_nationalite);
 
         card_GK.style.left = formations[window.localStorage.getItem('formation')][0].left
         card_GK.style.bottom = formations[window.localStorage.getItem('formation')][0].bottom
@@ -689,7 +702,7 @@ const validation = (data, keys, position) => {
     ];
     const type_car = position == "GK" ? 1 : 0
 
-    for (const key in keys) { 
+    for (const key in keys) {
         if (data[key] != "") {
             validate = true;
         } else {
@@ -715,21 +728,32 @@ const handleSubmit = (event) => {
     const data_create = {};
     const keys = {};
     const position = target[0].value;
+    const nationality_selected = document.getElementById('img_selected')
+    console.log(nationality_selected);
 
-    for (let index = 0; index < 20; index++) {
-        if (position != "GK" && index < 14) {
+
+    for (let index = 0; index < 21; index++) {
+        if (position != "GK" && index < 15) {
+            if (index == 3) {
+                continue;
+            }
             keys[target[index].name] = "";
         } else if (position == "GK") {
-            index < 8 || index > 13 ? keys[target[index].name] = "" : ""
+            if (index == 3) {
+                continue;
+            }
+            index < 9 || index > 14 ? keys[target[index].name] = "" : ""
         }
     }
 
+    console.log(keys);
+    
+
     for (const key in keys) {
-        if (key === 3) {
-            continue;
-        }
-        data_create[key] = target[key].value;
+        data_create[key] = key == "nationality" ? target[key].value :  target[key].value;
     }
+    console.log(data_create);
+
 
     switch (data_create.position) {
         case "CB":
@@ -759,13 +783,14 @@ const handleSubmit = (event) => {
         default:
             break;
     }
+    
 
-
-    const blob = new Blob([target[3].files[0]], { type: 'image/png' });
+    const blob = new Blob([target[4].files[0]], { type: 'image/png' });
     data_create['photo'] = URL.createObjectURL(blob)
     data_create['active'] = status;
 
     const isValidat = validation(data_create, keys, position);
+
 
     if (isValidat === true) {
         data[data_create.position].push(data_create);
@@ -773,7 +798,7 @@ const handleSubmit = (event) => {
         Swal.fire({
             icon: "warning",
             title: `${isValidat}`,
-            text: isValidat == `${isValidat} is not valide` ? "test": '',
+            text: isValidat == `${isValidat} is not valide` ? "test" : '',
             customClass: {
                 confirmButton: 'btn-confirm',
                 htmlContainer: 'custom-text'
@@ -782,4 +807,36 @@ const handleSubmit = (event) => {
     }
     appendCards();
 }
+
+new TomSelect('#select-nation', {
+    valueField: 'img',
+    labelField: 'name',
+    searchField: 'name',
+    load: function (query, callback) {
+        fetch("./Api/nation.json")
+            .then(response => response.json())
+            .then(json => {
+                callback(json);
+                console.log(json);
+            }).catch(() => {
+                callback();
+            });
+    },
+    render: {
+        option: function (item, escape) {
+            return `<div class="flex w-ful gap-2 rounded-md ">
+                    <img src="${item.img}" alt="" class="w-[2rem] h-[20px] rounded-md" >
+                    <h1 class="text-slate-700">${item.name}</h1>
+                    </div>`;
+        },
+        item: function (item, escape) {
+            return `<div class="flex gap-2 " style="display: flex;align-items: center;">
+                    <img src="${item.img}" id="img_selected" alt="" class="Flag w-[2rem] h-[20px] rounded-md" >
+                    <span class="text-slate-700 opacity-90">${item.name}</span>
+                    </div>`;
+
+        }
+    },
+});
+
 
