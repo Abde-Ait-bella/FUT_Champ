@@ -43,6 +43,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 1.5rem;
 }
 .card_position{
     top: 45px;
@@ -61,4 +62,11 @@
     font-size: 1.5rem;
     font-weight: bold;
     line-height: 1;
+}
+.btn-confirm{
+    background-color: rgb(30 41 59);
+    padding: 7px 50px;
+}
+.custom-text{
+    text-transform: capitalize;
 }

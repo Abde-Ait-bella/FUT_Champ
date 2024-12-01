@@ -966,6 +966,7 @@ video {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: 1.5rem;
 }
 
 .card_position{
@@ -988,6 +989,15 @@ video {
   line-height: 1;
 }
 
+.btn-confirm{
+  background-color: rgb(30 41 59);
+  padding: 7px 50px;
+}
+
+.custom-text{
+  text-transform: capitalize;
+}
+
 .file\:mr-4::file-selector-button {
   margin-right: 1rem;
 }
@@ -1000,9 +1010,9 @@ video {
   border-width: 0px;
 }
 
-.file\:bg-slate-700::file-selector-button {
+.file\:bg-slate-600::file-selector-button {
   --tw-bg-opacity: 1;
-  background-color: rgb(51 65 85 / var(--tw-bg-opacity, 1));
+  background-color: rgb(71 85 105 / var(--tw-bg-opacity, 1));
 }
 
 .file\:px-4::file-selector-button {

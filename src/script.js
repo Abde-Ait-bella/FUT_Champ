@@ -43,10 +43,11 @@ const toggle = () => {
 
     if (form.style.opacity == 1 || !form.style.opacity) {
         icone_previus.classList?.replace('fa-arrow-left', 'fa-bars')
+        form.style.opacity = 0
     } else {
         icone_previus.classList.replace('fa-bars', 'fa-arrow-left')
+        form.style.opacity = 1
     }
-    form.style.opacity == 1 || !form.style.opacity ? form.style.opacity = 0 : form.style.opacity = 1;
 
 }
 
@@ -317,15 +318,6 @@ const p_detaille = document.createElement('p')
 p_detaille.style.fontWeight = "700";
 p_detaille.style.fontSize = "12px";
 
-var stats = [
-    ['PC', 'pace'],
-    ['SH', 'shooting'],
-    ['PS', 'passing'],
-    ['DR', 'dribbling'],
-    ['DE', 'defending'],
-    ['PH', 'physical'],
-]
-
 const fill_GK_card = () => {
 
     const GK = document.getElementById('card_0');
@@ -334,11 +326,20 @@ const fill_GK_card = () => {
 
     const GK_data = data.GK.filter((d) => d.active == true)
 
+    var stats = [
+        ['DV', 'diving'],
+        ['HD', 'handling'],
+        ['KC', 'kicking'],
+        ['REF', 'reflexes'],
+        ['SP', 'speed'],
+        ['PS', 'positioning'],
+    ]
+
     if (GK_data.length !== 0) {
 
         card_GK.children[0].children[0].children[0].textContent = GK_data[0].rating;
         card_GK.children[0].children[0].children[1].textContent = GK_data[0].position;
-        card_GK.children[0].children[1].children[0].textContent = GK_data[0].name.toLocaleLowerCase();
+        card_GK.children[0].children[1].children[0].textContent = GK_data[0].name.toLocaleLowerCase().split(" ")[0];
         img_card.src = GK_data[0].photo;
         card_GK.children[0].appendChild(img_card.cloneNode(true));
 
@@ -358,6 +359,15 @@ const fill_GK_card = () => {
     }
 }
 
+var stats = [
+    ['PC', 'pace'],
+    ['SH', 'shooting'],
+    ['PS', 'passing'],
+    ['DR', 'dribbling'],
+    ['DE', 'defending'],
+    ['PH', 'physical'],
+]
+
 const fill_LB_card = () => {
 
     const LB = document.getElementById('card_1');
@@ -367,10 +377,9 @@ const fill_LB_card = () => {
     const LB_data = data.LB.filter((d) => d.active == true).slice(0, 1)
     LB_data.slice(0, 1)
 
-
     if (LB_data.length !== 0) {
 
-        card_LB.children[0].children[1].children[0].textContent = LB_data[0].name.toLocaleLowerCase();
+        card_LB.children[0].children[1].children[0].textContent = LB_data[0].name.toLocaleLowerCase().split(" ")[0]
         card_LB.children[0].children[0].children[0].textContent = LB_data[0].rating;
         card_LB.children[0].children[0].children[1].textContent = LB_data[0].position;
         img_card.src = LB_data[0].photo;
@@ -399,11 +408,9 @@ const fill_RB_card = () => {
     const card_RB = card.cloneNode(true)
     const RB_data = data.RB.filter((d) => d.active == true).slice(0, 1)
 
-
-
     if (RB_data.length !== 0) {
 
-        card_RB.children[0].children[1].children[0].textContent = RB_data[0].name.toLocaleLowerCase();
+        card_RB.children[0].children[1].children[0].textContent = RB_data[0].name.toLocaleLowerCase().split(" ")[0]
         card_RB.children[0].children[0].children[0].textContent = RB_data[0].rating;
         card_RB.children[0].children[0].children[1].textContent = RB_data[0].position;
         img_card.src = RB_data[0].photo;
@@ -435,7 +442,7 @@ const fill_CB_card = () => {
         for (let index = 0; index < CB_data.length; index++) {
 
             const card_CB = card.cloneNode(true);
-            card_CB.children[0].children[1].children[0].textContent = CB_data[index].name.toLocaleLowerCase();
+            card_CB.children[0].children[1].children[0].textContent = CB_data[index].name.toLocaleLowerCase().split(" ")[0]
             card_CB.children[0].children[0].children[0].textContent = CB_data[index].rating;
             card_CB.children[0].children[0].children[1].textContent = CB_data[index].position;
             img_card.src = CB_data[0].photo;
@@ -466,13 +473,12 @@ const fill_CM_card = () => {
 
     const CM_data = data.CM.filter((d) => d.active == true).splice(0, 3)
 
-
     if (CM_data.length !== 0) {
 
         CM_data.map((e, i) => {
 
             const card_CM = card.cloneNode(true);
-            card_CM.children[0].children[1].children[0].textContent = CM_data[i].name.toLocaleLowerCase();
+            card_CM.children[0].children[1].children[0].textContent = CM_data[i].name.toLocaleLowerCase().split(" ")[0]
             card_CM.children[0].children[0].children[0].textContent = CM_data[i].rating;
             card_CM.children[0].children[0].children[1].textContent = CM_data[i].position;
             img_card.src = CM_data[0].photo;
@@ -506,7 +512,7 @@ const fill_ST_card = () => {
 
     if (ST_data.length !== 0) {
 
-        card_ST.children[0].children[1].children[0].textContent = ST_data[0].name.toLocaleLowerCase();
+        card_ST.children[0].children[1].children[0].textContent = ST_data[0].name.toLocaleLowerCase().split(" ")[0]
         card_ST.children[0].children[0].children[0].textContent = ST_data[0].rating;
         card_ST.children[0].children[0].children[1].textContent = ST_data[0].position;
         img_card.src = ST_data[0].photo;
@@ -525,7 +531,6 @@ const fill_ST_card = () => {
         card_ST.style.bottom = formations[window.localStorage.getItem('formation')][9].bottom;
 
         terrain.children[9].children[0] ? terrain.children[9].children[0].replaceWith(card_ST) : terrain.children[9].appendChild(card_ST)
-
     }
 }
 
@@ -536,7 +541,7 @@ const fill_RW_card = () => {
 
     if (RW_data.length !== 0) {
 
-        card_RW.children[0].children[1].children[0].textContent = RW_data[0].name.toLocaleLowerCase();
+        card_RW.children[0].children[1].children[0].textContent = RW_data[0].name.toLocaleLowerCase().split(" ")[0]
         card_RW.children[0].children[0].children[0].textContent = RW_data[0].rating;
         card_RW.children[0].children[0].children[1].textContent = RW_data[0].position;
         img_card.src = RW_data[0].photo; card_RW.children[0].appendChild(img_card.cloneNode(true));
@@ -565,7 +570,7 @@ const fill_LW_card = () => {
 
     if (LW_data.length !== 0) {
 
-        card_LW.children[0].children[1].children[0].textContent = LW_data[0].name.toLocaleLowerCase();
+        card_LW.children[0].children[1].children[0].textContent = LW_data[0].name.toLocaleLowerCase().split(" ")[0]
         card_LW.children[0].children[0].children[0].textContent = LW_data[0].rating;
         card_LW.children[0].children[0].children[1].textContent = LW_data[0].position;
         img_card.src = LW_data[0].photo; card_LW.children[0].appendChild(img_card.cloneNode(true));
@@ -583,7 +588,6 @@ const fill_LW_card = () => {
         card_LW.style.bottom = formations[window.localStorage.getItem('formation')][8].bottom;
 
         terrain.children[8].children[0] ? terrain.children[8].children[0].replaceWith(card_LW) : terrain.children[8].appendChild(card_LW)
-
     }
 }
 
@@ -648,6 +652,7 @@ function animation_card() {
             event.currentTarget.style.transform = "scale(1.1, 1.1)";
             event.currentTarget.style.transition = "scale 1s";
             event.currentTarget.style.filter = "drop-shadow(0 0 0.5rem #caf0f8)";
+            event.currentTarget.style.filter = "transition: scale 1s ease-in-out  ";
         })
 
         e.addEventListener('mouseout', (event) => {
@@ -684,7 +689,7 @@ const validation = (data, keys, position) => {
     ];
     const type_car = position == "GK" ? 1 : 0
 
-    for (const key in keys) {
+    for (const key in keys) { 
         if (data[key] != "") {
             validate = true;
         } else {
@@ -767,7 +772,12 @@ const handleSubmit = (event) => {
     } else {
         Swal.fire({
             icon: "warning",
-            text: `${isValidat}`,
+            title: `${isValidat}`,
+            text: isValidat == `${isValidat} is not valide` ? "test": '',
+            customClass: {
+                confirmButton: 'btn-confirm',
+                htmlContainer: 'custom-text'
+            }
         });
     }
     appendCards();
