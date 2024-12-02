@@ -16,13 +16,14 @@
 
 .card_detaille{
     position: absolute;
-    bottom: 30px;
+    bottom: 28px;
     left: 0;
     width: 100%;
     display: flex;
     align-items: center;
     color: white;
     flex-direction: column;
+    gap: 4px;
 }
 
 .card_detaille_elem{

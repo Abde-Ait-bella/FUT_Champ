@@ -630,6 +630,11 @@ video {
   height: 41rem;
 }
 
+.h-fit {
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
 .h-full {
   height: 100%;
 }
@@ -650,6 +655,10 @@ video {
   width: 20rem;
 }
 
+.w-\[1rem\] {
+  width: 1rem;
+}
+
 .w-\[25px\] {
   width: 25px;
 }
@@ -660,6 +669,10 @@ video {
 
 .w-full {
   width: 100%;
+}
+
+.w-\[20px\] {
+  width: 20px;
 }
 
 .max-w-sm {
@@ -724,15 +737,6 @@ video {
   border-radius: 0.375rem;
 }
 
-.rounded-sm {
-  border-radius: 0.125rem;
-}
-
-.rounded-s {
-  border-start-start-radius: 0.25rem;
-  border-end-start-radius: 0.25rem;
-}
-
 .border-gray-200 {
   --tw-border-opacity: 1;
   border-color: rgb(229 231 235 / var(--tw-border-opacity, 1));
@@ -780,11 +784,6 @@ video {
 
 .bg-transparent {
   background-color: transparent;
-}
-
-.bg-slate-700 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(51 65 85 / var(--tw-bg-opacity, 1));
 }
 
 .bg-\[url\(\'\.\/assets\/img\/grass\.jpg\'\)\] {
@@ -982,13 +981,14 @@ video {
 
 .card_detaille{
   position: absolute;
-  bottom: 30px;
+  bottom: 28px;
   left: 0;
   width: 100%;
   display: flex;
   align-items: center;
   color: white;
   flex-direction: column;
+  gap: 4px;
 }
 
 .card_detaille_elem{
