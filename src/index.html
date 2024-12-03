@@ -27,7 +27,7 @@
                 </select>
             </div>
         </nav>
-        <div class="flex justify-end bg-slate-800 h-full container_fut">
+        <div class="flex flex-col items-end bg-slate-800 h-full container_fut fle">
             <div id="left_bar"
                 class="desktop:w-96 left-0 z-[1] absolute bg-[url('./assets/img/grass.jpg')] bg-gray-900 bg-no-repeat p-5 pt-20 tablet:w-5/12 telephone:w-9/12 h-full transition-all duration-500 ease-in-out">
                 <div class="bottom-0 left-0 z-0 absolute bg-slate-950 opacity-70 w-full h-full"></div>
@@ -153,48 +153,50 @@
                     </form>
                 </div>
             </div>
-            <div id="terrain"
-                class="relative justify-center items-end grid bg-[url('./assets/svg/terrain.svg')] bg-gray-600 bg-transparent bg-contain bg-no-repeat bg-right mt-36 w-8/12 h-[41rem] transition-all duration-700 ease-in-out me-5">
+                <div id="terrain"
+                    class="relative justify-center items-end grid bg-[url('./assets/svg/terrain.svg')] bg-gray-600 bg-transparent bg-contain bg-no-repeat bg-right mt-36 w-8/12 h-[41rem] transition-all duration-700 ease-in-out me-5">
+                </div>
+                <div id="chengement" class="flex overflow-auto">
+                </div>
+        </div>
+        <div id="Layer_1" class="hidden">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170.75 181.2" width="30px">
+                <defs>
+                    <style>
+                        .cls-1 {
+                            fill: #4e28eb;
+                            stroke: #fff;
+                            stroke-width: 7px;
+                        }
+
+                        .cls-1,
+                        .cls-2 {
+                            stroke-miterlimit: 10;
+                        }
+
+                        .cls-2,
+                        .cls-3 {
+                            fill: #fff;
+                        }
+
+                        .cls-2 {
+                            stroke: #231f20;
+                        }
+                    </style>
+                </defs>
+                <polygon class="cls-1"
+                    points="3.5 33.73 85.37 3.73 167.25 33.73 167.25 147.47 85.37 177.47 3.5 147.47 3.5 33.73">
+                </polygon>
+                <path class="cls-2" d="M100,68.13" transform="translate(-14.63 -9.4)"></path>
+                <circle class="cls-3" cx="85.37" cy="62.6" r="9.18"></circle>
+                <circle class="cls-3" cx="85.37" cy="90.6" r="9.18"></circle>
+                <circle class="cls-3" cx="85.37" cy="118.6" r="9.18"></circle>
+            </svg>
+            <div class="edit__player-icon st__icon" onclick="editCard(event)">
+                <i class="fa-pen fa-solid"></i>
             </div>
-            <div id="Layer_1" class="hidden">
-                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170.75 181.2" width="30px">
-                    <defs>
-                        <style>
-                            .cls-1 {
-                                fill: #4e28eb;
-                                stroke: #fff;
-                                stroke-width: 7px;
-                            }
-
-                            .cls-1,
-                            .cls-2 {
-                                stroke-miterlimit: 10;
-                            }
-
-                            .cls-2,
-                            .cls-3 {
-                                fill: #fff;
-                            }
-
-                            .cls-2 {
-                                stroke: #231f20;
-                            }
-                        </style>
-                    </defs>
-                    <polygon class="cls-1"
-                        points="3.5 33.73 85.37 3.73 167.25 33.73 167.25 147.47 85.37 177.47 3.5 147.47 3.5 33.73">
-                    </polygon>
-                    <path class="cls-2" d="M100,68.13" transform="translate(-14.63 -9.4)"></path>
-                    <circle class="cls-3" cx="85.37" cy="62.6" r="9.18"></circle>
-                    <circle class="cls-3" cx="85.37" cy="90.6" r="9.18"></circle>
-                    <circle class="cls-3" cx="85.37" cy="118.6" r="9.18"></circle>
-                </svg>
-                <div class="edit__player-icon st__icon" onclick="editCard(event)">
-                    <i class="fa-pen fa-solid"></i>
-                </div>
-                <div onclick="removeCard(event)" class="delete__player-icon st__icon">
-                    <i class="fa-solid fa-trash ms-[0.5px]"></i>
-                </div>
+            <div onclick="removeCard(event)" class="delete__player-icon st__icon">
+                <i class="fa-solid fa-trash ms-[0.5px]"></i>
             </div>
         </div>
     </div>

@@ -14,6 +14,7 @@ const div_position_right = document.createElement('div')
 const img = document.createElement('img')
 const div = document.createElement('div')
 const img_card = document.createElement('img')
+const ch_container = document.getElementById('chengement')
 
 const closeNav = () => {
   nav.classList.add('telephone:w-1/12')
@@ -146,6 +147,56 @@ const p_detaille = document.createElement('p')
 p_detaille.style.fontWeight = '700'
 p_detaille.style.fontSize = '12px'
 
+const append_changement = position => {
+  const data_chang = data[position].filter(d => d.active == false)
+
+  data_chang.forEach((data, index) => {
+    console.log('playerData', data)
+
+    const cardElement = card.cloneNode(true)
+
+    // const svg_settings = document.getElementById('Layer_1').cloneNode(true)
+    // svg_settings.classList.remove('hidden')
+    // svg_settings.classList.add('absolute')
+    // svg_settings.classList.add('right-1')
+    // svg_settings.classList.add('top-7')
+    // svg_settings.setAttribute('data_id', playerData.id)
+    // svg_settings.setAttribute('position', playerData.position)
+
+    // cardElement.append(svg_settings)
+
+    cardElement.children[0].children[1].children[0].textContent = data.name
+      .toLocaleLowerCase()
+      .split(' ')[0]
+    cardElement.children[0].children[0].children[0].textContent = data.rating
+    cardElement.children[0].children[0].children[1].textContent = data.position
+    img_card.src = data.photo
+    cardElement.children[0].appendChild(img_card.cloneNode(true))
+
+    stats[position == 'GK' ? 1 : 0].forEach(stat => {
+      const divStat = div.cloneNode(true)
+      const pStat = p_detaille.cloneNode(true)
+
+      pStat.textContent = data[stat[1]]
+      divStat.textContent += stat[0]
+      divStat.appendChild(pStat)
+
+      cardElement.children[0].children[1].children[1].appendChild(divStat)
+    })
+
+    const img_nationality = img.cloneNode(true)
+    img_nationality.src = data.flag.replace(/&amp;/g, '&')
+
+    const img_club = img.cloneNode(true)
+    img_club.src = data.logo.replace(/&amp;/g, '&')
+
+    cardElement.children[0].children[1].children[2].appendChild(img_nationality)
+    cardElement.children[0].children[1].children[2].appendChild(img_club)
+
+    ch_container.appendChild(cardElement)
+  })
+}
+
 const fill_cards_by_position = (position, count, startIndex) => {
   const positionData =
     JSON.stringify(data[position]) != '{}'
@@ -215,6 +266,8 @@ const fill_cards_by_position = (position, count, startIndex) => {
       ? terrain.children[formationIndex].children[0].replaceWith(cardElement)
       : terrain.children[formationIndex].appendChild(cardElement)
   })
+
+  append_changement(position)
 }
 
 const removeCard = event => {
@@ -222,17 +275,17 @@ const removeCard = event => {
   const position = event.currentTarget.parentElement.getAttribute('position')
   const index = data[position].findIndex(d => d.id == id)
   data[position].splice(index, 1)
-  appendCards()
   localStorage.setItem('playersData', JSON.stringify(data))
+  appendCards()
   location.reload()
 }
 
 const editCard = async event => {
-  const id = event.currentTarget.parentElement.getAttribute('data_id')
-  const position = event.currentTarget.parentElement.getAttribute('position')
+  const target = event.currentTarget
+  const id = target.parentElement.getAttribute('data_id')
+  const position = target.parentElement.getAttribute('position')
   const data_filter = data[position].filter(d => d.id == id)
-  console.log(data_filter);
-  
+  const card_id = target.parentElement.parentElement.parentElement.id
 
   document.querySelector('[name="name"]').value = data_filter[0].name
   document.querySelector('[name="rating"]').value = data_filter[0].rating
@@ -255,6 +308,7 @@ const editCard = async event => {
   const update_button = document.getElementById('update_button')
   update_button.setAttribute('data_id', data_filter[0].id)
   update_button.setAttribute('position', data_filter[0].position)
+  update_button.setAttribute('card_id', card_id)
   const add_button = document.getElementById('add_button')
   update_button.classList.remove('hidden')
   add_button.classList.add('hidden')
@@ -264,9 +318,13 @@ const updateCard = event => {
   const target = event.currentTarget
   const id = target.getAttribute('data_id')
   const position = target.getAttribute('position')
+  const card_id = target.getAttribute('card_id')
   const data_filter = data[position].filter(d => d.id == id)
 
-    data_filter[0].positioning
+  const card_to_update = document.getElementById(`${card_id}`)
+  const img = card_to_update.children[0].children[0].children[2]
+
+  console.log('img', img)
 
   names = [
     [
@@ -302,24 +360,27 @@ const updateCard = event => {
   const type_position = position == 'GK' ? 1 : 0
 
   for (let i = 0; i < names[type_position].length; i++) {
-    console.log(
-      'test',
-      document.querySelector(`[name="${names[type_position][i]}"]`).value
-    )
     data_filter[0][`${names[type_position][i]}`] = document.querySelector(
       `[name="${names[type_position][i]}"]`
     ).value
   }
 
+  const blob = new Blob([document.querySelector(`[name="photo"]`)], {
+    type: 'image/png'
+  })
+  data_filter[0]['photo'] = URL.createObjectURL(blob)
+  img.src = 'URL.createObjectURL(blob)'
   const isValidat = validation(data_filter[0], names, position)
-  console.log(isValidat);
+  console.log(isValidat)
 
   for (let i = 0; i < names[type_position].length; i++) {
     document.querySelector(`[name="${names[type_position][i]}"]`).value = ''
   }
 
+  console.log(target.parentElement.parentElement.parentElement)
+
   localStorage.setItem('playersData', JSON.stringify(data))
-  location.reload();
+  appendCards()
 }
 
 var stats = [
@@ -347,6 +408,7 @@ const defaultCardShow = () => {
   const typeF = window.localStorage.getItem('formation')
     ? window.localStorage.getItem('formation')
     : 1
+
   document.getElementById('formation_selected').value = typeF
 
   formations[typeF].map((e, i) => {
@@ -371,7 +433,14 @@ function handleForamtion (event) {
   window.localStorage.setItem('formation', event.currentTarget.value)
 }
 
+const emptyCHang = () => {
+  while (ch_container.firstChild) {
+    ch_container.removeChild(ch_container.firstChild)
+  }
+}
+
 const appendCards = () => {
+  emptyCHang()
   defaultCardShow()
   fill_cards_by_position('GK', 1, 0)
   fill_cards_by_position('LB', 1, 1)
@@ -543,13 +612,12 @@ const handleSubmit = event => {
 
   const isValidat = validation(data_create, keys, position)
 
-  
   if (isValidat === true) {
-      data[data_create.position].push(data_create)
-      localStorage.setItem('playersData', JSON.stringify(data))
-      for (const key in keys) {
-        target[key].value = ''
-      }
+    data[data_create.position].push(data_create)
+    localStorage.setItem('playersData', JSON.stringify(data))
+    for (const key in keys) {
+      target[key].value = ''
+    }
   } else {
     Swal.fire({
       icon: 'warning',
