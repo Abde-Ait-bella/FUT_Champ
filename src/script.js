@@ -152,8 +152,6 @@ const fill_cards_by_position = (position, count, startIndex) => {
       ? data[position]?.filter(d => d.active === true).slice(0, count)
       : null
 
-  console.log('positionData', positionData)
-
   if (positionData == null || positionData.length == 0) {
     return
   }
@@ -166,7 +164,7 @@ const fill_cards_by_position = (position, count, startIndex) => {
     svg_settings.classList.add('absolute')
     svg_settings.classList.add('right-1')
     svg_settings.classList.add('top-7')
-    svg_settings.setAttribute('id', playerData.id)
+    svg_settings.setAttribute('data_id', playerData.id)
     svg_settings.setAttribute('position', playerData.position)
 
     cardElement.append(svg_settings)
@@ -219,8 +217,8 @@ const fill_cards_by_position = (position, count, startIndex) => {
   })
 }
 
-const removeCard = (event) => {
-  const id = event.currentTarget.parentElement.id
+const removeCard = event => {
+  const id = event.currentTarget.parentElement.getAttribute('data_id')
   const position = event.currentTarget.parentElement.getAttribute('position')
   const index = data[position].findIndex(d => d.id == id)
   data[position].splice(index, 1)
@@ -229,46 +227,100 @@ const removeCard = (event) => {
   location.reload()
 }
 
-const editCard = (event) => {
-    const id = event.currentTarget.parentElement.id
-    const position = event.currentTarget.parentElement.getAttribute('position')
-    const data_filter = data[position].filter(d => d.id == id)
+const editCard = async event => {
+  const id = event.currentTarget.parentElement.getAttribute('data_id')
+  const position = event.currentTarget.parentElement.getAttribute('position')
+  const data_filter = data[position].filter(d => d.id == id)
+  console.log(data_filter);
+  
 
-    document.querySelector('[name="name"]').value = data_filter[0].name;
-    document.querySelector('[name="rating"]').value = data_filter[0].rating;
+  document.querySelector('[name="name"]').value = data_filter[0].name
+  document.querySelector('[name="rating"]').value = data_filter[0].rating
+  document.querySelector('[name="position"]').value = data_filter[0].position
+  document.querySelector('[name="logo"]').value = data_filter[0].logo
+  document.querySelector('[name="pace"]').value = data_filter[0].pace
+  document.querySelector('[name="shooting"]').value = data_filter[0].shooting
+  document.querySelector('[name="passing"]').value = data_filter[0].passing
+  document.querySelector('[name="dribbling"]').value = data_filter[0].dribbling
+  document.querySelector('[name="defending"]').value = data_filter[0].defending
+  document.querySelector('[name="physical"]').value = data_filter[0].physical
+  document.querySelector('[name="diving"]').value = data_filter[0].diving
+  document.querySelector('[name="handling"]').value = data_filter[0].handling
+  document.querySelector('[name="kicking"]').value = data_filter[0].kicking
+  document.querySelector('[name="reflexes"]').value = data_filter[0].reflexes
+  document.querySelector('[name="speed"]').value = data_filter[0].speed
+  document.querySelector('[name="positioning"]').value =
+    data_filter[0].positioning
 
-    document.querySelector('[name="position"]').value = data_filter[0].position;
+  const update_button = document.getElementById('update_button')
+  update_button.setAttribute('data_id', data_filter[0].id)
+  update_button.setAttribute('position', data_filter[0].position)
+  const add_button = document.getElementById('add_button')
+  update_button.classList.remove('hidden')
+  add_button.classList.add('hidden')
+}
 
-    const nationSelect = document.querySelector('[name="flag"]');
-    if (data_filter[0].flag) {
-      const option = document.createElement('option');
-      option.value = data_filter[0].flag;
-      option.textContent = data_filter[0].flag;
-      nationSelect.appendChild(option);
-      nationSelect.value = data_filter[0].flag;
-    }
+const updateCard = event => {
+  const target = event.currentTarget
+  const id = target.getAttribute('data_id')
+  const position = target.getAttribute('position')
+  const data_filter = data[position].filter(d => d.id == id)
 
-    document.querySelector('[name="logo"]').value = data_filter[0].logo;
+    data_filter[0].positioning
 
-    document.querySelector('[name="pace"]').value = data_filter[0].pace;
-    document.querySelector('[name="shooting"]').value = data_filter[0].shooting;
-    document.querySelector('[name="passing"]').value = data_filter[0].passing;
-    document.querySelector('[name="dribbling"]').value = data_filter[0].dribbling;
-    document.querySelector('[name="defending"]').value = data_filter[0].defending;
-    document.querySelector('[name="physical"]').value = data_filter[0].physical;
-    document.querySelector('[name="diving"]').value = data_filter[0].diving;
-    document.querySelector('[name="handling"]').value = data_filter[0].handling;
-    document.querySelector('[name="kicking"]').value = data_filter[0].kicking;
-    document.querySelector('[name="reflexes"]').value = data_filter[0].reflexes;
-    document.querySelector('[name="speed"]').value = data_filter[0].speed;
-    document.querySelector('[name="positioning"]').value = data_filter[0].positioning;
+  names = [
+    [
+      'position',
+      'name',
+      'flag',
+      'photo',
+      'logo',
+      'rating',
+      'pace',
+      'shooting',
+      'passing',
+      'dribbling',
+      'defending',
+      'physical'
+    ],
+    [
+      'position',
+      'name',
+      'flag',
+      'photo',
+      'logo',
+      'rating',
+      'diving',
+      'handling',
+      'kicking',
+      'reflexes',
+      'speed',
+      'positioning'
+    ]
+  ]
 
-    
+  const type_position = position == 'GK' ? 1 : 0
+
+  for (let i = 0; i < names[type_position].length; i++) {
+    console.log(
+      'test',
+      document.querySelector(`[name="${names[type_position][i]}"]`).value
+    )
+    data_filter[0][`${names[type_position][i]}`] = document.querySelector(
+      `[name="${names[type_position][i]}"]`
+    ).value
   }
 
-  const updateCard = () =>{
+  const isValidat = validation(data_filter[0], names, position)
+  console.log(isValidat);
 
+  for (let i = 0; i < names[type_position].length; i++) {
+    document.querySelector(`[name="${names[type_position][i]}"]`).value = ''
   }
+
+  localStorage.setItem('playersData', JSON.stringify(data))
+  location.reload();
+}
 
 var stats = [
   [
@@ -491,9 +543,13 @@ const handleSubmit = event => {
 
   const isValidat = validation(data_create, keys, position)
 
+  
   if (isValidat === true) {
-    data[data_create.position].push(data_create)
-    localStorage.setItem('playersData', JSON.stringify(data))
+      data[data_create.position].push(data_create)
+      localStorage.setItem('playersData', JSON.stringify(data))
+      for (const key in keys) {
+        target[key].value = ''
+      }
   } else {
     Swal.fire({
       icon: 'warning',
