@@ -14,7 +14,8 @@
         "passing": 91,
         "dribbling": 95,
         "defending": 35,
-        "physical": 65
+        "physical": 65,
+        "active": false
       },
       {
         "name": "Cristiano Ronaldo",
@@ -78,7 +79,9 @@
         "passing": 70,
         "dribbling": 72,
         "defending": 92,
-        "physical": 86
+        "physical": 86,
+        "active": false
+
       },
       {
         "name": "Antonio Rudiger",
@@ -110,7 +113,8 @@
         "passing": 86,
         "dribbling": 94,
         "defending": 37,
-        "physical": 61
+        "physical": 61,
+        "active": false
       },
       {
         "name": "Mohamed Salah",
@@ -222,7 +226,8 @@
         "passing": 83,
         "dribbling": 88,
         "defending": 40,
-        "physical": 78
+        "physical": 78,
+        "active": false
       },
       {
         "name": "Erling Haaland",
